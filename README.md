@@ -15,3 +15,13 @@ Les principaux objectifs du projet sont les suivants :
   - **Modèle complexe** : Une combinaison de **LSTM** (Long Short-Term Memory) et **CNN** (Convolutional Neural Network) pour capturer des dépendances temporelles complexes.
   - **Modèle simplifié** : Une approche **SARIMA-Boosting** (Seasonal AutoRegressive Integrated Moving Average) pour prédire les anomalies.
 - Comparer les **résultats obtenus** avec les **méthodes traditionnelles de maintenance prédictive** pour évaluer la performance des modèles.
+
+## Système Robotique - Robot à 6 Bras
+
+Dans ce projet, nous avons choisi de travailler avec un **robot industriel à 6 bras** comme système cible. Ce robot est conçu pour effectuer des tâches complexes nécessitant une grande précision et une flexibilité. Il est utilisé ici comme un modèle pour simuler le comportement des machines industrielles dans un environnement de maintenance prédictive.
+
+### Utilisation dans le Projet
+
+Le robot à 6 bras est simulé dans l'environnement MATLAB afin de reproduire son comportement au fil du temps. Nous suivons l’évolution de plusieurs paramètres critiques, comme la vitesse de rotation, la force appliquée, et l'usure des composants, pour créer les empreintes ADN temporelles. Ces empreintes seront ensuite utilisées pour entraîner et valider nos modèles prédictifs de maintenance.
+
+Nous avons également intégré des données de performance du robot dans le système de simulation afin de détecter des anomalies liées à des dysfonctionnements avant qu'ils ne causent des pannes majeures.
