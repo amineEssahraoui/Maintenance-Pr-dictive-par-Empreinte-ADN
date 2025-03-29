@@ -67,15 +67,7 @@ L’« ADN du robot » représente l’ensemble des caractéristiques comporteme
 
 ---
 
-## 5. Parties Prenantes
-
-- **Ingénieurs de maintenance** : Pour planifier les interventions préventives.  
-- **Opérateurs de production** : Pour être informés en temps réel et éviter les interruptions.  
-- **Responsables techniques** : Pour optimiser la gestion et le planning de maintenance.
-
----
-
-## 6. Conclusion
+## 5. Conclusion
 
 En combinant l’analyse des séries temporelles issues de simulations MATLAB et la définition de l’ADN du robot, ce projet vise à anticiper les pannes du **KUKA LBR iiwa 7 R800** avant qu’elles n’affectent la production, tout en garantissant un haut niveau de sécurité et en optimisant les coûts de maintenance.
 
