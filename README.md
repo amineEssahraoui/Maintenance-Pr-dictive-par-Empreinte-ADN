@@ -1,75 +1,110 @@
-# Sigma
+---
 
-**Sigma ** est un projet de maintenance prédictive industrielle conçu pour anticiper les défaillances des composants robotiques en analysant leurs signatures numériques en temps réel. Il exploite les technologies de **vision par ordinateur**, **deep learning**, et **détection d’anomalies**, et s’adresse aux ingénieurs, techniciens et opérateurs industriels.
+# 🤖 Sigma – Maintenance Prédictive Assistée par IA
 
-## 🚀 Objectifs du projet
+**Sigma** est une solution intelligente de maintenance prédictive conçue pour **surveiller l’état de santé des systèmes robotiques industriels** à partir de leurs **signatures numériques**.
+En combinant **Deep Learning**, **séries temporelles** et **détection d’anomalies**, Sigma permet de **détecter les comportements anormaux** en temps réel, avant qu'une panne ne survienne.
 
-- 📥 **Collecter** des séries temporelles à partir de robots et capteurs simulés dans **RoboDK**
-- 🧠 **Extraire** et **reconstruire** les signatures normales avec des autoencodeurs **LSTM**
-- ⚠️ **Détecter** les anomalies à l’aide de **Isolation Forest**
-- 🔮 **Prédire** l’évolution future des signatures pour anticiper les dégradations
-- 📉 **Estimer** le **Remaining Useful Life (RUL)** via une approche probabiliste
-- 🌐 **Déployer** une interface **Streamlit** pour la visualisation et l’interaction en temps réel
+🎯 Destiné aux **ingénieurs de maintenance**, **techniciens**, et **opérateurs industriels**, Sigma s’intègre facilement dans des environnements simulés via **RoboDK**.
 
-## 🔧 Pipeline du projet
+---
 
-1. **Ingestion des données**  
-   - Récupération des positions, vitesses et charges via l’API RoboDK  
-   - Stockage au format `.csv` ou `.parquet`
+## 🚀 Objectifs Clés
 
-2. **Prétraitement et Feature Engineering**  
-   - Nettoyage, normalisation, et glissement temporel (`rolling window`)  
-   - Construction des signatures et extraction des caractéristiques
+* 📡 **Collecter** des séries temporelles issues de robots, convoyeurs et rails simulés dans **RoboDK**
+* 🧬 **Modéliser** le comportement normal à l’aide d’**autoencodeurs LSTM**
+* 🚨 **Détecter** les anomalies de manière non supervisée avec **Isolation Forest**
+* 📈 **Suivre** l’évolution de la signature d’un système en continu
+* 🖥️ **Visualiser** dynamiquement les anomalies via une interface **Streamlit**
 
-3. **Modélisation**  
-   - Autoencodeur LSTM pour la reconstruction  
-   - Détection des anomalies avec Isolation Forest  
-   - Deuxième autoencodeur LSTM (sorties : reconstruction + prédiction)
+---
 
-4. **Estimation du RUL**  
-   - Fusion des erreurs (reconstruction + prédiction)  
-   - Estimation du RUL via un **Processus Gaussien**
+## 🔧 Pipeline Global
 
-5. **Déploiement**  
-   - Interface **Streamlit** interactive  
-   - Visualisation des scores d’anomalie et du RUL  
-   - Contrôle des seuils et exportation des rapports
+### 1. Ingestion des données
 
-## 📸 Aperçu de l’interface
+* Extraction en temps réel via **RoboDK API**
+* Positions, vitesses, charges moteur, etc.
+* Export au format `.csv` 
 
-![Streamlit Sigma-RUL Interface](./_static/pipeline.svg)
+### 2. Prétraitement
 
-## 📂 Structure du projet
+* Nettoyage, normalisation
+* Application de **fenêtres glissantes** (`rolling windows`)
+* Construction des **signatures numériques**
+
+### 3. Modélisation IA
+
+* **Autoencodeur LSTM** pour apprendre la structure normale du comportement
+* **Isolation Forest** pour détecter les écarts
+* Reconstruction + scoring d’anomalies
+
+### 4. Interface Utilisateur
+
+* Application **Streamlit** pour :
+
+  * Visualisation des anomalies dans le temps
+  * Contrôle des seuils
+  * Export des rapports
+
+---
+
+## 🖼️ Interface de Surveillance
+
+![Streamlit Sigma Interface](./_static/pipeline.svg)
+
+---
+
+## 📂 Arborescence du projet
 
 ```bash
-Sigma-RUL/
-├── data/               # Données simulées (séries temporelles)
-├── models/             # Modèles entraînés (autoencodeurs, etc.)
-├── app/                # Code de l'application Streamlit
-├── notebooks/          # Explorations et visualisations
-├── src/                # Modules Python (prétraitement, modélisation, etc.)
-├── _static/            # Images et fichiers statiques
-└── README.md           # Présentation du projet
+Sigma/
+├── data/           # Données simulées (robots, convoyeurs, rails)
+├── models/         # Modèles entraînés (LSTM, Isolation Forest)
+├── app/            # Interface utilisateur Streamlit
+├── notebooks/      # Analyses et visualisations
+├── src/            # Modules IA (prétraitement, détection, etc.)
+├── _static/        # Ressources visuelles
+└── README.md       # Présentation du projet
 ```
 
-⚙️ Technologies utilisées
+---
 
-🧠 Deep Learning : PyTorch, LSTM Autoencoders
+## ⚙️ Technologies
 
-📊 Time Series & Signal Processing
+| Domaine                 | Outils clés                   |
+| ----------------------- | ----------------------------- |
+| Deep Learning           | PyTorch, LSTM Autoencoders    |
+| Anomalie non supervisée | Isolation Forest              |
+| Time Series & Signal    | Pandas, NumPy, Rolling Window |
+| Simulation              | RoboDK                        |
+| Interface               | Streamlit                     |
 
-🤖 Simulation : RoboDK
+---
 
-🌐 Interface utilisateur : Streamlit
+## ▶️ Démarrage rapide
 
-🧪 Démarrer le projet
+```bash
 # Cloner le dépôt
-git clone https://github.com/<votre-utilisateur>/Sigma-RUL.git
-cd Sigma-RUL
+git clone https://github.com/<votre-utilisateur>/Sigma.git
+cd Sigma
 
 # Installer les dépendances
 pip install -r requirements.txt
 
-# Lancer l'application Streamlit
+# Lancer l’application
 streamlit run app/main.py
+```
+
+---
+
+## 🏁 Pourquoi choisir Sigma ?
+
+* 🧠 **Intelligence embarquée** : modélisation du comportement sans supervision
+* ⚠️ **Réactivité** : détection précoce de dérives
+* 📊 **Visualisation claire** : interface intuitive en temps réel
+* 🔧 **Facilité d’intégration** : simulation basée sur RoboDK, compatible avec d'autres plateformes
+
+---
+
 
