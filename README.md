@@ -1,5 +1,3 @@
----
-
 # 🤖 Sigma – Maintenance Prédictive Assistée par IA
 
 **Sigma** est une solution intelligente de maintenance prédictive conçue pour **surveiller l’état de santé des systèmes robotiques industriels** à partir de leurs **signatures numériques**.
