@@ -1,6 +1,6 @@
-# Sigma‑RUL
+# Sigma
 
-**Sigma‑RUL** est un projet de maintenance prédictive industrielle conçu pour anticiper les défaillances des composants robotiques en analysant leurs signatures numériques en temps réel. Il exploite les technologies de **vision par ordinateur**, **deep learning**, et **détection d’anomalies**, et s’adresse aux ingénieurs, techniciens et opérateurs industriels.
+**Sigma ** est un projet de maintenance prédictive industrielle conçu pour anticiper les défaillances des composants robotiques en analysant leurs signatures numériques en temps réel. Il exploite les technologies de **vision par ordinateur**, **deep learning**, et **détection d’anomalies**, et s’adresse aux ingénieurs, techniciens et opérateurs industriels.
 
 ## 🚀 Objectifs du projet
 
@@ -50,6 +50,7 @@ Sigma-RUL/
 ├── src/                # Modules Python (prétraitement, modélisation, etc.)
 ├── _static/            # Images et fichiers statiques
 └── README.md           # Présentation du projet
+```
 
 ⚙️ Technologies utilisées
 
@@ -60,3 +61,15 @@ Sigma-RUL/
 🤖 Simulation : RoboDK
 
 🌐 Interface utilisateur : Streamlit
+
+🧪 Démarrer le projet
+# Cloner le dépôt
+git clone https://github.com/<votre-utilisateur>/Sigma-RUL.git
+cd Sigma-RUL
+
+# Installer les dépendances
+pip install -r requirements.txt
+
+# Lancer l'application Streamlit
+streamlit run app/main.py
+
