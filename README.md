@@ -1,76 +1,62 @@
-# Maintenance Prédictive par Séries Temporelles et ADN du Robot  
-**Projet de maintenance prédictive**  
-*Utilisation de séries temporelles issues de simulations MATLAB pour anticiper les pannes du robot KUKA LBR iiwa 7 R800*
+# Sigma‑RUL
 
----
+**Sigma‑RUL** est un projet de maintenance prédictive industrielle conçu pour anticiper les défaillances des composants robotiques en analysant leurs signatures numériques en temps réel. Il exploite les technologies de **vision par ordinateur**, **deep learning**, et **détection d’anomalies**, et s’adresse aux ingénieurs, techniciens et opérateurs industriels.
 
-## 1. Introduction
+## 🚀 Objectifs du projet
 
-Ce projet vise à développer un système de maintenance prédictive pour le robot **KUKA LBR iiwa 7 R800** en combinant l'analyse des séries temporelles et la définition d'un "ADN du robot".  
-L’« ADN du robot » représente l’ensemble des caractéristiques comportementales et fonctionnelles qui définissent son état normal, permettant ainsi de détecter toute anomalie susceptible de conduire à une panne.
+- 📥 **Collecter** des séries temporelles à partir de robots et capteurs simulés dans **RoboDK**
+- 🧠 **Extraire** et **reconstruire** les signatures normales avec des autoencodeurs **LSTM**
+- ⚠️ **Détecter** les anomalies à l’aide de **Isolation Forest**
+- 🔮 **Prédire** l’évolution future des signatures pour anticiper les dégradations
+- 📉 **Estimer** le **Remaining Useful Life (RUL)** via une approche probabiliste
+- 🌐 **Déployer** une interface **Streamlit** pour la visualisation et l’interaction en temps réel
 
----
+## 🔧 Pipeline du projet
 
-## 2. Objectifs du Projet
+1. **Ingestion des données**  
+   - Récupération des positions, vitesses et charges via l’API RoboDK  
+   - Stockage au format `.csv` ou `.parquet`
 
-- **Objectif principal** :  
-  Prédire et prévenir les pannes du robot KUKA LBR iiwa 7 R800 en utilisant un modèle d'apprentissage automatique basé sur des données simulées dans MATLAB.
+2. **Prétraitement et Feature Engineering**  
+   - Nettoyage, normalisation, et glissement temporel (`rolling window`)  
+   - Construction des signatures et extraction des caractéristiques
 
-- **Objectifs secondaires** :  
-  - Générer un dataset réaliste via simulation MATLAB reprenant les séries temporelles (température, vibrations, courants moteurs, etc.).  
-  - Extraire des caractéristiques pertinentes à partir des signaux simulés.  
-  - Définir l’« ADN du robot » afin d’identifier son comportement normal et détecter les anomalies.  
-  - Développer et valider un modèle de machine learning capable de prédire les pannes.  
-  - Mettre en place un système d’alerte et un tableau de bord pour le suivi en temps réel.
+3. **Modélisation**  
+   - Autoencodeur LSTM pour la reconstruction  
+   - Détection des anomalies avec Isolation Forest  
+   - Deuxième autoencodeur LSTM (sorties : reconstruction + prédiction)
 
----
+4. **Estimation du RUL**  
+   - Fusion des erreurs (reconstruction + prédiction)  
+   - Estimation du RUL via un **Processus Gaussien**
 
-## 3. Définition du Problème
+5. **Déploiement**  
+   - Interface **Streamlit** interactive  
+   - Visualisation des scores d’anomalie et du RUL  
+   - Contrôle des seuils et exportation des rapports
 
-- **Système surveillé** :  
-  Le robot collaboratif **KUKA LBR iiwa 7 R800**.
+## 📸 Aperçu de l’interface
 
-- **Types de pannes visées** :  
-  - Pannes mécaniques (usure des articulations, frottements anormaux).  
-  - Pannes électriques (surchauffe, variations anormales du courant moteur).  
-  - Problèmes de communication ou de contrôle.
+![Streamlit Sigma-RUL Interface](./_static/pipeline.svg)
 
-- **Justification** :  
-  - **Impact sur la production** : Les pannes imprévues peuvent entraîner des arrêts coûteux.  
-  - **Sécurité** : Anticiper les défaillances pour assurer la sécurité des opérateurs.  
-  - **Coûts de maintenance** : Réduire les coûts en passant d’une maintenance corrective à une maintenance proactive.
+## 📂 Structure du projet
 
----
+```bash
+Sigma-RUL/
+├── data/               # Données simulées (séries temporelles)
+├── models/             # Modèles entraînés (autoencodeurs, etc.)
+├── app/                # Code de l'application Streamlit
+├── notebooks/          # Explorations et visualisations
+├── src/                # Modules Python (prétraitement, modélisation, etc.)
+├── _static/            # Images et fichiers statiques
+└── README.md           # Présentation du projet
 
-## 4. Méthodologie
+⚙️ Technologies utilisées
 
-### 4.1 Génération du Dataset par Simulation MATLAB
+🧠 Deep Learning : PyTorch, LSTM Autoencoders
 
-- Modélisation du comportement du robot dans différents scénarios d’utilisation.  
-- Simulation des signaux (séries temporelles) tels que la température, les vibrations et les courants moteurs.  
-- Injection de scénarios de panne pour enrichir le dataset.
+📊 Time Series & Signal Processing
 
-### 4.2 Extraction de l’ADN du Robot
+🤖 Simulation : RoboDK
 
-- Définir les caractéristiques comportementales du robot en condition normale.  
-- Identifier les indicateurs de déviation (anomalies) qui pourraient signaler une défaillance imminente.
-
-### 4.3 Développement du Modèle de Prédiction
-
-- Sélection et entraînement de modèles de machine learning et/ou deep learning adaptés aux séries temporelles (par exemple, Random Forest, SVM, LSTM).  
-- Validation croisée et optimisation du modèle.
-
-### 4.4 Déploiement et Suivi
-
-- Intégration du modèle dans un système de monitoring.  
-- Mise en place d’un tableau de bord pour visualiser les prédictions et déclencher des alertes en cas de détection d’anomalies.
-
----
-
-## 5. Conclusion
-
-En combinant l’analyse des séries temporelles issues de simulations MATLAB et la définition de l’ADN du robot, ce projet vise à anticiper les pannes du **KUKA LBR iiwa 7 R800** avant qu’elles n’affectent la production, tout en garantissant un haut niveau de sécurité et en optimisant les coûts de maintenance.
-
----
-
-*Pour toute question ou suggestion, n’hésitez pas à nous contacter.*
+🌐 Interface utilisateur : Streamlit
